@@ -1,5 +1,7 @@
 # Docker Node.js Deployment Assignment
 
+Repository: https://github.com/godququ5-code/docker-node-assignment
+
 This repository demonstrates how to deploy a Node.js backend with Docker and how to run a React client and Node.js server together with Docker Compose.
 
 ## Project Structure
