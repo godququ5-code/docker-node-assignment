@@ -63,7 +63,7 @@ Use a Node build stage for Vite and an Nginx runtime stage for static files and 
 
 - [ ] **Step 3: Add Compose**
 
-Define `server` and `client` services on the same default network. Publish backend on `3000:3000` and client on `8080:80`.
+Define `server` and `client` services on the same default network. Publish backend on `3000:3000` and client on `8081:80`.
 
 ### Task 4: Documentation and Verification
 
@@ -82,5 +82,5 @@ Run:
 `curl http://localhost:3000/api/health`
 `docker stop docker-node-backend-check && docker rm docker-node-backend-check`
 `docker compose up --build -d`
-`curl http://localhost:8080/api/health`
+`curl http://localhost:8081/api/health`
 `docker compose down`

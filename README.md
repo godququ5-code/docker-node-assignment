@@ -27,6 +27,15 @@ Install Docker Desktop from the official Docker documentation:
 
 https://docs.docker.com/desktop/
 
+On macOS, Docker can also be provided by Docker CLI plus Colima:
+
+```bash
+brew install docker docker-compose colima
+mkdir -p ~/.docker
+node -e "const fs=require('fs'); const p=process.env.HOME+'/.docker/config.json'; const cfg=fs.existsSync(p)?JSON.parse(fs.readFileSync(p,'utf8')||'{}'):{}; cfg.cliPluginsExtraDirs=[...new Set([...(cfg.cliPluginsExtraDirs||[]), '/opt/homebrew/lib/docker/cli-plugins'])]; fs.writeFileSync(p, JSON.stringify(cfg, null, 2));"
+colima start
+```
+
 After installation, verify Docker:
 
 ```bash
@@ -74,14 +83,14 @@ docker compose up --build -d
 Open the client:
 
 ```text
-http://localhost:8080
+http://localhost:8081
 ```
 
 Check communication through the client container and Nginx proxy:
 
 ```bash
-curl http://localhost:8080/api/health
-curl http://localhost:8080/api/messages
+curl http://localhost:8081/api/health
+curl http://localhost:8081/api/messages
 ```
 
 The `client` container serves the React app with Nginx. Requests to `/api/` are proxied to the `server` container by using the Compose service name:
@@ -119,6 +128,6 @@ The Vite development server proxies `/api` requests to `http://localhost:3000`.
 ## 5. Expected Result
 
 - Backend API is available at `http://localhost:3000/api/health`.
-- React client is available at `http://localhost:8080`.
+- React client is available at `http://localhost:8081`.
 - The client can read backend status, list messages, and send new messages.
 - `docker compose down` stops and removes both containers.
